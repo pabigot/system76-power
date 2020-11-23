@@ -124,6 +124,9 @@ impl FanDaemon {
         }
 
         log::debug!("current temp: {:?}", temp_opt);
+        if let Some(temp) = temp_opt {
+            log::debug!("duty percent: {:?}", self.curve.get_duty((temp / 10) as i16));
+	}
 
         temp_opt
     }
@@ -243,12 +246,12 @@ impl FanCurve {
     /// Fan curve for threadripper 2
     pub fn threadripper2() -> Self {
         Self::default()
-            .append(00_00, 30_00)
-            .append(40_00, 40_00)
-            .append(47_50, 50_00)
-            .append(55_00, 65_00)
-            .append(62_50, 85_00)
-            .append(66_25, 100_00)
+            .append(00_00,  30_00)
+            .append(67_00,  40_00)
+            .append(74_50,  50_00)
+            .append(82_00,  65_00)
+            .append(89_50,  85_00)
+            .append(93_25, 100_00)
     }
 
     /// Fan curve for HEDT systems
