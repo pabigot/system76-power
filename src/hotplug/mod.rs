@@ -224,6 +224,18 @@ impl HotPlugDetect {
                     ],
                 }),
             }),
+            "gaze17-3050" => Ok(Self {
+                integrated: Integrated::Intel(Intel {
+                    sideband: Sideband::new(PCR_BASE_ADDRESS)?,
+                    port:     0x6E,
+                    pins:     [
+                        0x72, // Mini DisplayPort
+                        0x00, // HDMI (0x78) is connected to Intel graphics
+                        0x00, // Not Connected
+                        0x00, // Not Connected
+                    ],
+                }),
+            }),
             "gaze17-3060-b" => Ok(Self {
                 integrated: Integrated::Intel(Intel {
                     sideband: Sideband::new(PCR_BASE_ADDRESS)?,
